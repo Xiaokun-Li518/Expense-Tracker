@@ -1,33 +1,17 @@
-# Use the official .NET 6.0 SDK image as the base image
+# syntax=docker/dockerfile:1
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+WORKDIR /src
 
-# Set the working directory in the image to /app
-WORKDIR /app
-
-# Copy the .csproj file(s) and restore packages
+# Copy csproj and restore as distinct layers
 COPY *.csproj ./
 RUN dotnet restore
 
-# Copy the rest of the application source
+# Copy everything else and build
 COPY . ./
+RUN dotnet publish -c Release -o /app
 
-# Build the application
-RUN dotnet publish -c Release -o out
-
-# Use the official .NET 6.0 runtime image as the base image for the runtime environment
+# Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
-
-ENV ASPNETCORE_ENVIRONMENT=Production
-
-
-# Set the working directory in the image to /app
 WORKDIR /app
-
-# Copy the published files into the runtime image
-COPY --from=build-env /app/out .
-
-# Expose port 80 for the application
-EXPOSE 80
-
-# Set the entry point for the container
+COPY --from=build-env /app .
 ENTRYPOINT ["dotnet", "Expense Tracker.dll"]
