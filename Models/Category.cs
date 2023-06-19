@@ -22,7 +22,7 @@ namespace Expense_Tracker.Models
         public string? TitleWithIcon {
             get
             {
-                return this.Icon + " " +this.Title;
+                return this.Icon + " " + this.Title;
             }
         }
     }

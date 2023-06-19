@@ -1,10 +1,11 @@
 @model IEnumerable<Expense_Tracker.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["PageTitle"] = "Categories";
+    ViewData["PageActionText"] = "+ New Category";
+    ViewData["PageActionUrl"] = "/Category/AddorEdit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <div class="row">
     <div class="col-md-7">
@@ -35,8 +36,15 @@
 
 <script id="actionColumnTemplate" type="text/x-template">
     <div class="d-flex flex-row justify-content-start">
-        <a href="/Category/AddOrEdit/${CategoryId}">
+        <a href="/Category/AddOrEdit/${CategoryId}" class="btn btn-sm no-a-decoration">
             <i class="fa-solid fa-pen fa-lg"></i>
         </a>
+        <form action="/Category/Delete/${CategoryId}" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onClick="return confirm(&quot; Comfirm Delete&quot;)">
+                <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
+            </button>
+        </form>
     </div>
 </script>
