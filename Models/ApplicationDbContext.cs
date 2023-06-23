@@ -20,6 +20,5 @@ namespace Expense_Tracker.Models
                     v => v.ToUniversalTime(), // Convert to UTC when saving to DB
                     v => DateTime.SpecifyKind(v, DateTimeKind.Utc)); // Specify as UTC when reading from DB
         }
-
     }
 }

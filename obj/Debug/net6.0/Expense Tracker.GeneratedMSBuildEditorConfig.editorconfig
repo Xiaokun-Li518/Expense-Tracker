@@ -40,20 +40,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/lixiaokun/Desktop/C\#Learning/Expense Tracker/Expense Tracker/Views/Transaction/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/lixiaokun/Desktop/C\#Learning/Expense Tracker/Expense Tracker/Views/Transaction/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/lixiaokun/Desktop/C\#Learning/Expense Tracker/Expense Tracker/Views/Transaction/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/lixiaokun/Desktop/C\#Learning/Expense Tracker/Expense Tracker/Views/Transaction/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vRWRpdC5jc2h0bWw=
+[/Users/lixiaokun/Desktop/C\#Learning/Expense Tracker/Expense Tracker/Views/Transaction/AddOrEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVHJhbnNhY3Rpb24vQWRkT3JFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/lixiaokun/Desktop/C\#Learning/Expense Tracker/Expense Tracker/Views/Transaction/Index.cshtml]
