@@ -11,13 +11,24 @@
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="mb-3">
-                    <label asp-for="Date" class="control-label"></label>
-                    <input asp-for="Date" class="form-control" />
+                    <ejs-datepicker id="date" 
+                                    ejs-for="Date" 
+                                    placeholder="Date" 
+                                    format="MMM-dd-yy"
+                                    floatLabelType="Always"
+                                    >
+                    </ejs-datepicker>
                     <span asp-validation-for="Date" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label asp-for="CategoryId" class="control-label"></label>
-                    <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+                    <ejs-dropdownlist id="ddlCategory" 
+                                      dataSource="@ViewBag.Categories"
+                                      ejs-for="CategoryId"
+                                      placeholder="Category"
+                                      floatLabelType="Always"
+                                      >
+                        <e-dropdownlist-fields value="CategoryId" text="TitleWithIcon"></e-dropdownlist-fields>
+                    </ejs-dropdownlist>
                 </div>
                 <div class="mb-3">
                     <label asp-for="Amount" class="control-label"></label>
