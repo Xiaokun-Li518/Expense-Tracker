@@ -12,7 +12,7 @@
         <ejs-grid id="transactions" dataSource="@Model" gridLines="None" allowSorting="true" allowPaging="true">
             <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
             <e-grid-columns>
-                <e-grid-column headerText="Category" field="CategoryId"> </e-grid-column>
+                <e-grid-column headerText="Category" field="Category.TitleWithIcon"></e-grid-column>
                 <e-grid-column headerText="Amount" field="Amount"></e-grid-column>
                 <e-grid-column headerText="Note" field="Note"></e-grid-column>
                 <e-grid-column headerText="Actions" template="#actionColumnTemplate" width="100px"> </e-grid-column>
@@ -37,7 +37,7 @@
 
 <script id="actionColumnTemplate" type="text/x-template">
     <div class="d-flex flex-row justify-content-start">
-        <a href="/Transaction/AddOrEdit/${CategoryId}" class="btn btn-sm no-a-decoration">
+        <a href="/Transaction/AddOrEdit/${TransactionId}" class="btn btn-sm no-a-decoration">
             <i class="fa-solid fa-pen fa-lg"></i>
         </a>
         <form action="/Transaction/Delete/${TransactionId}" method="post">
