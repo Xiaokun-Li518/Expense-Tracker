@@ -12,8 +12,9 @@
         <ejs-grid id="transactions" dataSource="@Model" gridLines="None" allowSorting="true" allowPaging="true">
             <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
             <e-grid-columns>
-                <e-grid-column headerText="Category" field="Category.TitleWithIcon"></e-grid-column>
-                <e-grid-column headerText="Amount" field="Amount"></e-grid-column>
+                <e-grid-column headerText="Category" field="CategoryTitleWithIcon"></e-grid-column>
+                <e-grid-column headerText="Date" field="Date" width="110px"></e-grid-column>
+                <e-grid-column headerText="Amount" field="FormattedAmount"></e-grid-column>
                 <e-grid-column headerText="Note" field="Note"></e-grid-column>
                 <e-grid-column headerText="Actions" template="#actionColumnTemplate" width="100px"> </e-grid-column>
             </e-grid-columns>
@@ -22,7 +23,7 @@
 
     <div class="col-md-5">
         <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: #212b36">
-            <i class="fa-solid fa-cloud fa-2xl"></i>
+            <i class="fa-solid fa-money-bill-transfer fa-2xl"></i>
         </div>
     </div>
 </div>

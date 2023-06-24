@@ -18,6 +18,25 @@ namespace Expense_Tracker.Models
         public string? Note { get; set; }
 
         public DateTime Date { get; set; } = DateTime.UtcNow;
+
+
+        [NotMapped]
+        public string? CategoryTitleWithIcon
+        {
+            get
+            {
+                return Category == null? "":Category.TitleWithIcon;
+            }
+        }
+
+        [NotMapped]
+        public string? FormattedAmount 
+        {
+            get
+            {
+                return ((Category == null || Category.Type == "Expense")? "- ":"+ ") + Amount.ToString();
+            }
+        }
     }
 }
 
