@@ -1,5 +1,4 @@
 @model Expense_Tracker.Models.Transaction
-
 @{
     ViewData["PageTitle"] = Model.TransactionId== null ? "Create A New Transaction" : "Edit Transaction";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,14 +7,14 @@
 <div class="row">
     <div class="col-md-7">
         <div class="widget p-5" style="background-color: #212b36">
-            <form asp-action="Create">
+            <form asp-action="AddOrEdit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="mb-3">
                     <ejs-datepicker id="date" 
                                     ejs-for="Date" 
                                     placeholder="Date" 
                                     format="MMM-dd-yy"
-                                    floatLabelType="Always"
+                                    floatLabelType="Auto"
                                     >
                     </ejs-datepicker>
                     <span asp-validation-for="Date" class="text-danger"></span>
@@ -25,7 +24,7 @@
                                       ejs-for="CategoryId"
                                       dataSource="@ViewBag.Categories"
                                       placeholder="Choose a category"
-                                      floatLabelType="Always"
+                                      floatLabelType="Auto"
                                       allowFiltering="true"
                                       ignoreAccent="true"
                                       filterType="Contains"
@@ -38,20 +37,22 @@
                     <ejs-numerictextbox id="amount" 
                                         ejs-for="Amount"
                                         placeholder="Amount"
-                                        floatLabelType ="Always"
+                                        floatLabelType ="Auto"
                                         min=0
                                         format="c">
                     </ejs-numerictextbox>
                     <span asp-validation-for="Amount" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label asp-for="Note" class="control-label"></label>
-                    <input asp-for="Note" class="form-control" />
+                    <ejs-textbox id="note" 
+                                 placeholder="Note" 
+                                 floatLabelType="Auto" 
+                                 ejs-for="Note"
+                                 multiline="true">
+                    </ejs-textbox>
                     <span asp-validation-for="Note" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
+                <ejs-button id="submit" type="submit" content="Submit" cssClass="e-success"></ejs-button>
             </form>
         </div>
     </div>
