@@ -9,6 +9,7 @@ namespace Expense_Tracker.Models
         public int? CategoryId { get; set; }
 
         [Column(TypeName= "varchar(50)")]
+        [Required(ErrorMessage = "Title is Required")]
         public string? Title { get; set; }
 
         [Column(TypeName= "varchar(5)")]

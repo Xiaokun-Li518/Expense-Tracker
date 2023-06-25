@@ -9,10 +9,12 @@ namespace Expense_Tracker.Models
         [Key]
         public int? TransactionId { get; set;}
 
-        public int? CategoryId { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a category.")]
+        public int CategoryId { get; set; }
         public Category? Category { get; set; }
 
-        public int? Amount { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Amount should be greater than 0.")]
+        public int? Amount { get; set; } = 0;
 
         [Column(TypeName= "varchar(75)")]
         public string? Note { get; set; }
@@ -34,7 +36,7 @@ namespace Expense_Tracker.Models
         {
             get
             {
-                return ((Category == null || Category.Type == "Expense")? "- ":"+ ") + Amount.ToString();
+                return ((Category == null || Category.Type == "Expense")? "- ":"+ ") + "$"+Amount.ToString();
             }
         }
     }
