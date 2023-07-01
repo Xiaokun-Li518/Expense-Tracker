@@ -27,6 +27,13 @@ body {
 .e-bigger {
   font-size:x-large
 }
+
+/* main-container */
+.main-container {
+  margin-left: 290px;
+}
+
+
 /* BreadCrumb */
 .e-breadcrumb a, .e-breadcrumb a:hover {
   text-decoration: none !important;
@@ -137,6 +144,15 @@ btn:focus, .btn:active {
   color: #212b36;
   border:1px solid #fff;
 }
+
+
+/* sidebar */
+#sidebar {
+  background-color: #12161d;
+  border-right: 1px dashed rgba(75, 82, 85, 0.24);
+  padding: 10px 20px;
+}
+
 
 
 .widget {
