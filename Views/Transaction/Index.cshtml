@@ -15,26 +15,19 @@
                 <e-grid-column headerText="Category" field="CategoryTitleWithIcon"></e-grid-column>
                 <e-grid-column headerText="Date" field="Date" width="110px" type="date" format="MMM-dd-yy" textAlign="Left"></e-grid-column>
                 <e-grid-column headerText="Amount" field="FormattedAmount" textAlign="Right"></e-grid-column>
-                <e-grid-column headerText="Note" field="Note"></e-grid-column>
+                @* <e-grid-column headerText="Note" field="Note"></e-grid-column> *@
                 <e-grid-column headerText="Actions" template="#actionColumnTemplate" width="100px"> </e-grid-column>
             </e-grid-columns>
         </ejs-grid>
     </div>
 
     <div class="col-md-5">
-        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: #212b36">
+        <div class="widget h-100 d-flex justify-content-center align-items-center" >
             <i class="fa-solid fa-money-bill-transfer fa-2xl"></i>
         </div>
     </div>
 </div>
 
-@* <script id="typeColumnTemplate" type="text/x-template">
-    ${if (Type=="Income")}
-        <span class="badge bg-success">${Type}</span>
-    ${else}
-        <span class="badge bg-danger">${Type}</span>
-    ${/if}
-</script> *@
 
 <script id="actionColumnTemplate" type="text/x-template">
     <div class="d-flex flex-row justify-content-start">

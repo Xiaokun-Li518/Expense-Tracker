@@ -53,11 +53,11 @@ namespace Expense_Tracker.Controllers
             {
                 if (transaction.TransactionId == 0)
                 {
-                    _context.Add (transaction);
+                    _context.Add(transaction);
                 }
                 else
                 {
-                    _context.Update (transaction);
+                    _context.Update(transaction);
                 }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
