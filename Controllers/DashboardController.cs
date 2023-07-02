@@ -22,20 +22,32 @@ public class DashboardController : Controller
         DateTime StartDate = DateTime.Today.AddDays (-6);
         DateTime EndDate = DateTime.Today;
 
-        List<Transaction> SelectedTranscations = await _context.Transactions
-            .Include(x => x.Category)
-            .Where(y => y.Date >= StartDate && y.Date <= EndDate)
-            .ToListAsync();
+        // Get 7 days of transactions
+        List<Transaction> SelectedTranscations = await GetSelectedTransactions(StartDate, EndDate);
 
+        // Total Income, Total Expense, Balance
+        PrepareTotal (SelectedTranscations);
+
+        // Donut chart
+        PrepareDoughnutChart(SelectedTranscations);
+
+        // Spline Chart - Income vs Expense
+        PrepareSplineChart(SelectedTranscations, StartDate);
+
+        return View();
+    }
+
+    private void PrepareTotal (List<Transaction> transactions)
+    {
         // Total Income 
-        int TotalIncome = (int)SelectedTranscations
+        int TotalIncome = (int)transactions
             .Where (i => i.Category.Type == "Income")
             .Sum (j => j.Amount);
 
         ViewBag.TotalIncome = TotalIncome.ToString("c0");
 
         // Total Expense    
-        int TotalExpense = (int)SelectedTranscations
+        int TotalExpense = (int)transactions
             .Where (i => i.Category.Type == "Expense")
             .Sum (j => j.Amount);
 
@@ -46,23 +58,37 @@ public class DashboardController : Controller
         CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
         culture.NumberFormat.CurrencyNegativePattern = 1;
         ViewBag.Balance = String.Format(culture, "{0:C0}", Balance);
+    }
 
+    private async Task<List<Transaction>> GetSelectedTransactions(DateTime StartDate, DateTime EndDate)
+    {
+        return await _context.Transactions
+            .Include(x => x.Category)
+            .Where (y => y.Date >= StartDate && y.Date  <= EndDate)
+            .ToListAsync();
+    }
 
-        var doughnutChartData = SelectedTranscations
-            .Where (i => i.Category.Type == "Expense")
-            .GroupBy (j => j.CategoryId)
-            .Select (k => new {
-                CategoryTitleWithIcon = k.First().CategoryTitleWithIcon + " $" + k.Sum(j=>j.Amount),
-                amount = k.Sum (j => j.Amount),
-                formattedAmount = "$"+k.Sum(j=>j.Amount),
+    private void PrepareDoughnutChart(List<Transaction> transactions)
+    {
+        var doughnutChartData = transactions
+            .Where(i => i.Category.Type == "Expense")
+            .GroupBy(j => j.CategoryId)
+            .Select(k => new {
+                CategoryTitleWithIcon = k.First().CategoryTitleWithIcon + " $" + k.Sum(j => j.Amount),
+                amount = k.Sum(j => j.Amount),
+                formattedAmount = "$" + k.Sum(j => j.Amount),
             })
-            .OrderByDescending(l=>l.amount)
+            .OrderByDescending(l => l.amount)
             .ToList();
-        ViewBag.DoughnutChartData = doughnutChartData;
 
-        // Spline Chart - Income vs Expense
+        ViewBag.DoughnutChartData = doughnutChartData;
+    }
+
+    private void PrepareSplineChart(List<Transaction> transactions, DateTime StartDate)
+    {
+
         // Income
-        List<SplineChartData> IncomeSummary = SelectedTranscations
+        List<SplineChartData> IncomeSummary = transactions
             .Where(i=>i.Category.Type=="Income")
             .GroupBy(j=>j.Date)
             .Select(k=>new SplineChartData()
@@ -73,7 +99,7 @@ public class DashboardController : Controller
             .ToList();
 
         // Expense 
-        List<SplineChartData> ExpenseSummary = SelectedTranscations
+        List<SplineChartData> ExpenseSummary = transactions 
             .Where(i=>i.Category.Type=="Expense")
             .GroupBy(j=>j.Date)
             .Select(k=>new SplineChartData()
@@ -102,12 +128,9 @@ public class DashboardController : Controller
 
                                   };
 
-
-
-        return View();
     }
-
 }
+
 
 public class SplineChartData 
 {
