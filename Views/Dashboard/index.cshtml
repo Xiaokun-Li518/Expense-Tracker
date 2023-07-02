@@ -1,11 +1,11 @@
-@{
-    ViewData["IsDashborad"] = true;
+@{ ViewData["IsDashborad"] = true;
 }
 
 @using Syncfusion.EJ2
 
 @* Summary Widgets *@
 <div class="row mb-4">
+    @* Total Income *@
     <div class="col-md-4">
         <div class="d-flex flex-row widget summary income">
             <div class="d-flex flex-column justify-content-center p-5">
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-
+    @* Total Expense *@
     <div class="col-md-4">
         <div class="d-flex flex-row widget summary expense">
             <div class="d-flex flex-column justify-content-center p-5">
@@ -29,6 +29,7 @@
             </div>
         </div>
     </div>
+    @* Balance *@
     <div class="col-md-4">
         <div class="d-flex flex-row widget summary balance">
             <div class="d-flex flex-column justify-content-center p-5">
@@ -46,7 +47,7 @@
 @* Doughnut and Spline Chart *@
 
 <div class="row mb-4">
-
+    @* doughnut chart *@
     <div class="col-md-4">
         <div class="widget chart">
             <div class="p-4">
@@ -54,6 +55,9 @@
                 <div class="control-section" align='center'>
                     <ejs-accumulationchart id="doughnutchart" enableSmartLabels enableBorderOnMouseMove background="#1a222b">
                         <e-accumulationchart-center x="50%" y="50%"></e-accumulationchart-center>
+                        <e-accumulationchart-centerlabel text="Expense<br>By<br>Category" hoverTextFormat="${point.x}">
+                            <e-centerlabel-textstyle color="#fff" fontFamily="Inter"></e-centerlabel-textstyle>
+                        </e-accumulationchart-centerlabel>
                         <e-accumulation-series-collection>
                             <e-accumulation-series dataSource="@ViewBag.DoughnutChartData"
                             xName="CategoryTitleWithIcon" yName="amount" innerRadius="60%"> 
@@ -67,13 +71,16 @@
                         <e-accumulationchart-legendsettings position="Top" toggleVisibility="false">
                             <e-legendsettings-textstyle color="#fff" size="1rem" fontFamily="Inter"></e-legendsettings-textstyle>
                         </e-accumulationchart-legendsettings>
-                        <e-accumulationchart-tooltipsettings enable format="${point.x}" header=""></e-accumulationchart-tooltipsettings>
+                        <e-accumulationchart-tooltipsettings enable format="${point.x}" header="">
+                            <e-tooltipsettings-textstyle fontFamily="Inter"></e-tooltipsettings-textstyle>
+                        </e-accumulationchart-tooltipsettings>
                     </ejs-accumulationchart>
                 </div>
             </div>
         </div>
     </div>
 
+    @* Spline-chart *@
     <div class="col-md-8">
         <div class="widget chart">
             <div class="p-4">
@@ -117,7 +124,9 @@
                     <e-legendsettings-textstyle color="#fff" size="1rem" fontFamily="Inter"></e-legendsettings-textstyle>
                 </e-chart-legendsettings>
 
-                <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
+                <e-chart-tooltipsettings enable shared>
+                    <e-tooltipsettings-textstyle fontFamily="Inter"></e-tooltipsettings-textstyle>
+                </e-chart-tooltipsettings>
             </ejs-chart>
         </div>
     </div>
