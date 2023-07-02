@@ -55,7 +55,9 @@ public class DashboardController : Controller
                 CategoryTitleWithIcon = k.First().CategoryTitleWithIcon + " $" + k.Sum(j=>j.Amount),
                 amount = k.Sum (j => j.Amount),
                 formattedAmount = "$"+k.Sum(j=>j.Amount),
-            }).ToList();
+            })
+            .OrderByDescending(l=>l.amount)
+            .ToList();
 
         _logger.LogInformation("Doughnut Chart Data: {data}", doughnutChartData);
         ViewBag.DoughnutChartData = doughnutChartData;

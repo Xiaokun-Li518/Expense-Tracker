@@ -179,3 +179,9 @@ btn:focus, .btn:active {
     padding: 5px;
     color: white;
   }
+
+
+  /* tooltip */
+  .e-accumulationchart-tooltipsettings {
+    font-family: 'Inter', sans-serif;
+}
