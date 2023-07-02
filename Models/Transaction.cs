@@ -21,7 +21,6 @@ namespace Expense_Tracker.Models
 
         public DateTime Date { get; set; } = DateTime.UtcNow;
 
-
         [NotMapped]
         public string? CategoryTitleWithIcon
         {

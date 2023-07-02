@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "A8OkTYvI8mrjo7Rrdnm9NI4TlD1sgSrKujZ1SlcmhMiLQPqAqJGz4JOIkBV2Pk+AP8q/pd9raA2QJQX/aalCSQ==",
+  "dgSpecHash": "/3Jdc9mq8iIPZb05bk+g5fKX/jribFPBL3yRQHrElaj0lKDYFaO/WjNEmKHfzaRHwonJivd87CmjTrxNJUFXgQ==",
   "success": true,
   "projectFilePath": "/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/Expense Tracker.csproj",
   "expectedPackageFiles": [
@@ -105,8 +105,8 @@
     "/Users/lixiaokun/.nuget/packages/sqlitepclraw.core/2.1.2/sqlitepclraw.core.2.1.2.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.2/sqlitepclraw.lib.e_sqlite3.2.1.2.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.2/sqlitepclraw.provider.e_sqlite3.2.1.2.nupkg.sha512",
-    "/Users/lixiaokun/.nuget/packages/syncfusion.ej2.aspnet.core/21.2.8/syncfusion.ej2.aspnet.core.21.2.8.nupkg.sha512",
-    "/Users/lixiaokun/.nuget/packages/syncfusion.licensing/21.2.8/syncfusion.licensing.21.2.8.nupkg.sha512",
+    "/Users/lixiaokun/.nuget/packages/syncfusion.ej2.aspnet.core/22.1.36/syncfusion.ej2.aspnet.core.22.1.36.nupkg.sha512",
+    "/Users/lixiaokun/.nuget/packages/syncfusion.licensing/22.1.36/syncfusion.licensing.22.1.36.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/system.appcontext/4.3.0/system.appcontext.4.3.0.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",
