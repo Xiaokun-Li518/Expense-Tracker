@@ -58,12 +58,60 @@ public class DashboardController : Controller
             })
             .OrderByDescending(l=>l.amount)
             .ToList();
-
-        _logger.LogInformation("Doughnut Chart Data: {data}", doughnutChartData);
         ViewBag.DoughnutChartData = doughnutChartData;
+
+        // Spline Chart - Income vs Expense
+        // Income
+        List<SplineChartData> IncomeSummary = SelectedTranscations
+            .Where(i=>i.Category.Type=="Income")
+            .GroupBy(j=>j.Date)
+            .Select(k=>new SplineChartData()
+            {
+                day = k.First().Date.ToString("dd-MMM"),
+                income = (int)k.Sum(l=>l.Amount)
+            })
+            .ToList();
+
+        // Expense 
+        List<SplineChartData> ExpenseSummary = SelectedTranscations
+            .Where(i=>i.Category.Type=="Expense")
+            .GroupBy(j=>j.Date)
+            .Select(k=>new SplineChartData()
+            {
+                day = k.First().Date.ToString("dd-MMM"),
+                expense=(int)k.Sum(l=>l.Amount)
+            })
+            .ToList();
+
+        // Combine Income & Expense
+        string[] Last7Days = Enumerable.Range(0, 7)
+            .Select(i=>StartDate.AddDays(i).ToString("dd-MMM"))
+            .ToArray();
+
+
+        ViewBag.SplineChartData = from day in Last7Days 
+                                  join income in IncomeSummary on day equals income.day into dayIncomeJoined
+                                  from income in dayIncomeJoined.DefaultIfEmpty()
+                                  join expense in ExpenseSummary on day equals expense.day into expenseJoined
+                                  from expense in expenseJoined.DefaultIfEmpty()
+                                  select new 
+                                  {
+                                    day = day,
+                                    income = income == null ? 0 : income.income,
+                                    expense = expense == null ? 0 : expense.expense
+
+                                  };
+
 
 
         return View();
     }
 
+}
+
+public class SplineChartData 
+{
+    public string day;
+    public int income;
+    public int expense;
 }

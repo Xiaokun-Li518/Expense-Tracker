@@ -79,8 +79,45 @@
             <div class="p-4">
                 <h5 class="fw-bold">Income Vs Expense</h5>
             </div>
-            <ejs-chart id="spline-chart" background="#1a222b">
+            <ejs-chart id="spline-chart" 
+                       background="#1a222b"
+                       palettes=@(new string[]{"#65da41", "#ff4e48"})>
+                <e-chart-primaryxaxis valueType="@Syncfusion.EJ2.Charts.ValueType.Category" > 
+                    <e-majorgridlines width="0"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                </e-chart-primaryxaxis>
+                <e-chart-primaryyaxis > 
+                    <e-majorticklines width="0"></e-majorticklines>
+                    <e-majorgridlines width="1" color="#32414d" dashArray="3,5"></e-majorgridlines>
+                    <e-linestyle width="0" ></e-linestyle>
+                </e-chart-primaryyaxis>
+                <e-chart-chartarea>
+                    <e-chartarea-border width="0"></e-chartarea-border>
+                </e-chart-chartarea>
+                <e-series-collection>
+                    <e-series dataSource="@ViewBag.SplineChartData" 
+                                xName="day" 
+                                yName="income"
+                                name="Income"
+                                type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"
+                                width="3">
+                        <e-series-marker visible="true" height="7" width="7"></e-series-marker>
+                    </e-series>
+                    <e-series dataSource="@ViewBag.SplineChartData" 
+                                xName="day" 
+                                yName="expense"
+                                name="Expense"
+                                type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"
+                                width="3">
+                        <e-series-marker visible></e-series-marker>
+                    </e-series>
+                </e-series-collection>
 
+                <e-chart-legendsettings position="Top" toggleVisibility>
+                    <e-legendsettings-textstyle color="#fff" size="1rem" fontFamily="Inter"></e-legendsettings-textstyle>
+                </e-chart-legendsettings>
+
+                <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
             </ejs-chart>
         </div>
     </div>
