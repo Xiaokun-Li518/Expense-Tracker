@@ -34,6 +34,14 @@ public class DashboardController : Controller
         // Spline Chart - Income vs Expense
         PrepareSplineChart(SelectedTranscations, StartDate);
 
+
+        // Recent Transations 
+        ViewBag.RecentTransations = await _context.Transactions
+            .Include(i => i.Category)
+            .OrderByDescending (j => j.Date)
+            .Take(5)
+            .ToListAsync();
+
         return View();
     }
 
@@ -125,7 +133,6 @@ public class DashboardController : Controller
                                     day = day,
                                     income = income == null ? 0 : income.income,
                                     expense = expense == null ? 0 : expense.expense
-
                                   };
 
     }

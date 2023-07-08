@@ -60,7 +60,7 @@
                         </e-accumulationchart-centerlabel>
                         <e-accumulation-series-collection>
                             <e-accumulation-series dataSource="@ViewBag.DoughnutChartData"
-                            xName="CategoryTitleWithIcon" yName="amount" innerRadius="60%"> 
+                            xName="CategoryTitleWithIcon" yName="amount" innerRadius="65%"> 
                                 <e-accumulationseries-datalabel visible name="formattedAmount">
                                     <e-font color="white" fontWeight="600" size="10px" fontFamily="Inter"></e-font> 
                                     <e-connectorstyle type="@Syncfusion.EJ2.Charts.ConnectorType.Curve" length="20px"></e-connectorstyle>
@@ -130,4 +130,26 @@
             </ejs-chart>
         </div>
     </div>
+</div>
+
+
+@* Recent Transactions and More *@
+<div class="row">
+    <div class="col-md-6">
+        <div class="widget">
+            <div class="p-4">
+                <h5 class="fw-bold">Recent Transations</h5>
+            </div>
+            <div class="px-4 pb-4">
+                <ejs-grid id="recent-transations" dataSource="@ViewBag.RecentTransations">
+                    <e-grid-columns>
+                        <e-grid-column headerText="Category" field="CategoryTitleWithIcon"></e-grid-column>
+                        <e-grid-column headerText="Date" field="Date" width="110px" type="date" format="MMM-dd-yy" textAlign="Left"></e-grid-column>
+                        <e-grid-column headerText="Amount" field="FormattedAmount" textAlign="Right"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
+            </div>
+        </div>
+    </div>
+
 </div>
