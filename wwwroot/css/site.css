@@ -24,9 +24,82 @@ body {
 }
 
 
+/*Menu*/
+#menu {
+  width: 100% !important;
+  background-color: inherit;
+  overflow: hidden;
+}
+
+  #menu .e-menu-item:not(.e-separator) {
+      height: 50px;
+      border-radius: 4px;
+  }
+
+  #menu .e-menu-item {
+      box-sizing: border-box;
+  }
+
+      #menu .e-menu-item a {
+          width: 100%;
+          color: rgb(171, 163, 152);
+          font-weight: 300;
+          padding: 7px 7px;
+          box-sizing: border-box;
+      }
+
+  #menu .e-anchor-wrap {
+      display: inline-block;
+  }
+
+  #menu .e-menu-item .e-anchor-wrap span.e-menu-icon {
+      color: rgb(171, 163, 152);
+  }
+
+  #menu .e-menu-item.e-separator {
+      border: none;
+      margin: 5px 5px;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 13px;
+      color: #65da41;
+  }
+
+      #menu .e-menu-item.e-separator:not(:first-child) {
+          margin-top: 35px;
+      }
+
+
+/* Profile pic */
+img.profile-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+
 .e-bigger {
   font-size:x-large
 }
+
+
+/* Navbar */
+nav.navbar {
+  background-color: rgba(18, 22, 29);
+}
+    nav.navbar i {
+      padding:10px;
+      border-radius: 50%;
+      font-size:1.2rem;
+      cursor:pointer;
+    }
+
+        nav.navbar i:hover, nav.navbar img:hover {
+          cursor: pointer;
+          background-color: #48545f14;
+          transform: scale(1.05) translateX(1px);
+        }
+
 
 /* main-container */
 .main-container {
@@ -49,7 +122,25 @@ btn:focus, .btn:active {
 .no-a-decoration, .no-a-decoration:hover{
   text-decoration:none;
   color:inherit;
+  transition: color 0.3s ease;
 }
+
+.no-a-decoration:hover {
+  color: #2aa1ff; /* Your hover color */
+}
+
+.no-a-decoration i {
+  transition: color 0.3s ease;
+}
+
+.no-a-decoration:hover i {
+  color: #2aa1ff; /* Your desired hover color for icon */
+}
+
+
+
+
+
 
 
 /*Grid*/
@@ -152,6 +243,10 @@ btn:focus, .btn:active {
   border-right: 1px dashed rgba(75, 82, 85, 0.24);
   padding: 10px 20px;
 }
+    #sidebar .e-menu-wrapper {
+      width:100%;
+      background-color: inherit;
+    }
 
 
 

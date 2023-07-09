@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/3Jdc9mq8iIPZb05bk+g5fKX/jribFPBL3yRQHrElaj0lKDYFaO/WjNEmKHfzaRHwonJivd87CmjTrxNJUFXgQ==",
+  "dgSpecHash": "5/UeHyIM3yWCX3eyucGvb6KLuRmRUAva3qnPhSwXnjZdphCOXKC1o3le4PbNuZp9WoP42/FMy/tu7bbemiXaCQ==",
   "success": true,
   "projectFilePath": "/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/Expense Tracker.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,9 @@
     "/Users/lixiaokun/.nuget/packages/messagepack/2.1.152/messagepack.2.1.152.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/messagepack.annotations/2.1.152/messagepack.annotations.2.1.152.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/messagepackanalyzer/2.1.152/messagepackanalyzer.2.1.152.nupkg.sha512",
+    "/Users/lixiaokun/.nuget/packages/microsoft.aspnetcore.cryptography.internal/6.0.0/microsoft.aspnetcore.cryptography.internal.6.0.0.nupkg.sha512",
+    "/Users/lixiaokun/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/6.0.0/microsoft.aspnetcore.cryptography.keyderivation.6.0.0.nupkg.sha512",
+    "/Users/lixiaokun/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/6.0.0/microsoft.aspnetcore.identity.entityframeworkcore.6.0.0.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.0/microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/microsoft.bcl.asyncinterfaces/5.0.0/microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/microsoft.build/17.3.2/microsoft.build.17.3.2.nupkg.sha512",
@@ -48,6 +51,8 @@
     "/Users/lixiaokun/.nuget/packages/microsoft.extensions.dependencyinjection/6.0.1/microsoft.extensions.dependencyinjection.6.0.1.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/microsoft.extensions.dependencymodel/6.0.0/microsoft.extensions.dependencymodel.6.0.0.nupkg.sha512",
+    "/Users/lixiaokun/.nuget/packages/microsoft.extensions.identity.core/6.0.0/microsoft.extensions.identity.core.6.0.0.nupkg.sha512",
+    "/Users/lixiaokun/.nuget/packages/microsoft.extensions.identity.stores/6.0.0/microsoft.extensions.identity.stores.6.0.0.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/microsoft.extensions.logging/6.0.0/microsoft.extensions.logging.6.0.0.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "/Users/lixiaokun/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
