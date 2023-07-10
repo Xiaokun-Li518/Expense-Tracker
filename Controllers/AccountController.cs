@@ -35,7 +35,6 @@ namespace Expense_Tracker.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    Console.WriteLine("Login Successfull");
                     return RedirectToLocal("Dashboard");
                 }
                 else
@@ -46,18 +45,6 @@ namespace Expense_Tracker.Controllers
             }
             
             return View(model);
-        }
-
-        private IActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction(nameof(DashboardController.Index), "Dashboard");
-            }
         }
 
 
@@ -82,12 +69,26 @@ namespace Expense_Tracker.Controllers
                     // For more information on how to enable account confirmation and password reset please 
                     // visit https://go.microsoft.com/fwlink/?LinkID=532713
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToLocal("Dashboard");
+
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(DashboardController.Index), "Dashboard");
+            }
         }
 
         private void AddErrors(IdentityResult result)

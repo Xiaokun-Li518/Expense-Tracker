@@ -1,22 +1,28 @@
 @model LoginViewModel
-<h2>Login</h2>
-<form asp-controller="Account" asp-action="Login" method="post">
-    <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
+@{
+    ViewData["PageTitle"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-5">
+        <div class="widget p-5" style="background-color: #212b36">
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <div class="mb-3">
+                    <ejs-textbox id="email" placeholder="Email" floatLabelType="Auto" ejs-for="@Model.Email"></ejs-textbox>
+                    <span asp-validation-for="Email" class="text-danger fs-6"></span>
+                </div>
+                <div class="mb-3">
+                    <ejs-textbox id="password" placeholder="Password" floatLabelType="Auto" ejs-for="@Model.Password"></ejs-textbox>
+                    <span asp-validation-for="Password" class="text-danger fs-6"></span>
+                </div>
+                <ejs-button id="submit" type="submit" content="Submit" cssClass="e-success"></ejs-button>
+            </form>
+        <span style="font-size: medium;">Don't have an account? 
+        <a asp-controller="Account" asp-action="Register" style="color: #428bca; text-decoration: none;">Register</a>
+        </span>
+
+        </div>
     </div>
-    <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <input type="submit" value="Log in" />
-    </div>
-</form>
+</div>
 
 <!-- Register Button -->
-<div>
-    <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register</a>
-</div>
