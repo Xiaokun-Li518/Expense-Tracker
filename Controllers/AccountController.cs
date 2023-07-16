@@ -48,6 +48,17 @@ namespace Expense_Tracker.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SignOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Login));
+        }
+
+
+
+
         [HttpGet]
         public IActionResult Register()
         {

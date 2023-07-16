@@ -26,6 +26,7 @@ namespace Expense_Tracker.Controllers
         // GET: Category
         public async Task<IActionResult> Index()
         {
+
             var currentUser = await _userManager.GetUserAsync(User);
 
             var categories = await _context.Categories

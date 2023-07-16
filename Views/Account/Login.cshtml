@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-7">
         <div class="widget p-5" style="background-color: #212b36">
             <form asp-controller="Account" asp-action="Login" method="post">
                 <div class="mb-3">
@@ -12,7 +12,7 @@
                     <span asp-validation-for="Email" class="text-danger fs-6"></span>
                 </div>
                 <div class="mb-3">
-                    <ejs-textbox id="password" placeholder="Password" floatLabelType="Auto" ejs-for="@Model.Password"></ejs-textbox>
+                    <ejs-textbox id="password" placeholder="Password" floatLabelType="Auto" ejs-for="@Model.Password" type="password"></ejs-textbox>
                     <span asp-validation-for="Password" class="text-danger fs-6"></span>
                 </div>
                 <ejs-button id="submit" type="submit" content="Submit" cssClass="e-success"></ejs-button>

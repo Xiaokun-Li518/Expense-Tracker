@@ -13,11 +13,11 @@
                     <span asp-validation-for="Email" class="text-danger fs-6"></span>
                 </div>
                 <div class="mb-3">
-                    <ejs-textbox id="password" placeholder="Password" floatLabelType="Auto" ejs-for="@Model.Password"></ejs-textbox>
+                    <ejs-textbox id="password" placeholder="Password" floatLabelType="Auto" ejs-for="@Model.Password" type="password"></ejs-textbox>
                     <span asp-validation-for="Password" class="text-danger fs-6"></span>
                 </div>
                 <div class="mb-3">
-                    <ejs-textbox id="ConfirmPassword" placeholder="Comfirm Passward" floatLabelType="Auto" ejs-for="@Model.ConfirmPassword"></ejs-textbox>
+                    <ejs-textbox id="ConfirmPassword" placeholder="Comfirm Passward" floatLabelType="Auto" ejs-for="@Model.ConfirmPassword" type="password"></ejs-textbox>
                     <span asp-validation-for="ConfirmPassword" class="text-danger fs-6"></span>
                 </div>
                 <ejs-button id="submit" type="submit" content="Submit" cssClass="e-success"></ejs-button>

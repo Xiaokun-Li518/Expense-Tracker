@@ -16,16 +16,6 @@
 <body class="e-bigger">
     <Partial name="_SideBar" />
 
-    <nav class="navbar sticky-top">
-        <div class="container-fluid py-2 px-4">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <div>
-                <i class="fa-solid fa-bell"></i>
-                <i class="fa-solid fa-message"></i>
-                <img src="~/profile.jpeg" class="profile-pic">
-            </div>
-        </div>
-    </nav>
 
     <div class="main-container">
         <div class="container mt-5">
@@ -63,13 +53,13 @@
             </div>
         </div>
     </div>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
      <!-- Syncfusion Script Manager -->
     <ejs-scripts></ejs-scripts>
+
 </body>
 </html>
 

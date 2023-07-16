@@ -29,10 +29,6 @@ public class DashboardController : Controller
     public async Task<ActionResult> Index()
     {
 
-        if (!User.Identity.IsAuthenticated)
-        {
-            return RedirectToAction ("Login", "Account");
-        }
 
         var currentUser = await _userManager.GetUserAsync(User);
         // Last 7 Days
@@ -54,6 +50,7 @@ public class DashboardController : Controller
 
         // Recent Transations 
         ViewBag.RecentTransations = await _context.Transactions
+            .Where (t => t.User.Id == currentUser.Id && t.Date >= StartDate && t.Date <= EndDate)
             .Include(i => i.Category)
             .OrderByDescending (j => j.Date)
             .Take(5)
