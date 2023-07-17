@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Expense_Tracker.Controllers
 {
-    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,11 +22,13 @@ namespace Expense_Tracker.Controllers
             _userManager = userManager;
         }
 
-        // GET: Category
         public async Task<IActionResult> Index()
         {
-
             var currentUser = await _userManager.GetUserAsync(User);
+            if(currentUser == null)
+            {
+                return View(new List<Category>());
+            }
 
             var categories = await _context.Categories
                 .Where(c => c.UserId == currentUser.Id)
@@ -44,11 +45,14 @@ namespace Expense_Tracker.Controllers
             return View(categories);
         }
 
-
         // GET: Category/AddOrEdit
         public async Task<IActionResult> AddOrEdit(int id = 0)
         {
             var currentUser = await _userManager.GetUserAsync(User);
+            if(currentUser == null)
+            {
+                return Challenge(); // Redirects to the Login page
+            }
 
             if (id == 0)
             {
@@ -71,6 +75,7 @@ namespace Expense_Tracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]  // Moved here
         public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -105,14 +110,10 @@ namespace Expense_Tracker.Controllers
             return View(category);
         }
 
-
-
-
-
-
         // POST: Category/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]  // Moved here
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -127,6 +128,5 @@ namespace Expense_Tracker.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
     }
 }

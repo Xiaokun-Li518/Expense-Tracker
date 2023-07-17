@@ -1,7 +1,6 @@
 @using Syncfusion.EJ2;
 @using Syncfusion.EJ2.Navigations;
 @using Microsoft.AspNetCore.Identity;
-
 @{
     Dictionary<string, object> HtmlAttribute = new Dictionary<string, object>()
     {   {"class", "sidebar-menu" } };
@@ -25,33 +24,42 @@
 			Url = "/Transaction",
 			IconCss="fa-solid fa-arrow-right-arrow-left"
 		},
+	};
 
-        new MenuItem {
-            Text = "Notification",
-            IconCss = "fa-solid fa-bell",
-			Url="#"
-        },
-		new MenuItem {
-				Text = "User",
-				IconCss = "fa-solid fa-user",
-				Items = User.Identity.IsAuthenticated ? 
-				new List<MenuItem> { // If user is authenticated
-					new MenuItem{ Text = "Profile", Url="/Profile" },
-					new MenuItem{ Text = "Sign Out"}
-				} :
-				new List<MenuItem> { // If user is not authenticated
-					new MenuItem{ Text = "Sign In", Url="/Account/Login" }
-				}
-			},
-        new MenuItem {
-            Text = "Settings",
-            IconCss = "fa-solid fa-eye",
-            Items = new List<MenuItem> {
-                new MenuItem{ Text = "Change Profile" },
-                new MenuItem{ Text = "Add Details" }
+    if (User.Identity.IsAuthenticated) {
+        MainMenuItems.Add (
+            new MenuItem {
+                Text = "Notification",
+                IconCss = "fa-solid fa-bell",
+                Url="#"
             }
-        },
-    };
+        );
+        MainMenuItems.Add(
+            new MenuItem {
+                Text = "Sign Out",
+                IconCss = "fa-solid fa-arrow-left"
+            }
+        );
+
+        MainMenuItems.Add(
+            new MenuItem {
+                Text = "Settings",
+                IconCss = "fa-solid fa-eye",
+                Items = new List<MenuItem> {
+                    new MenuItem{ Text = "Change Profile" },
+                    new MenuItem{ Text = "Add Details" }
+                }
+            }
+        );
+    } else {
+        MainMenuItems.Add(
+            new MenuItem {
+                Text = "Sign In",
+                IconCss = "fa-solid fa-arrow-right",
+                Url = "/Account/Login"
+            }
+        );
+    }
 }
 
 

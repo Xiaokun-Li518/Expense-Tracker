@@ -2,15 +2,12 @@ using Expense_Tracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
-using Expense_Tracker.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
-using System.Globalization;
 
 
 namespace Expense_Tracker.Controllers;
 
-[Authorize]
 public class DashboardController : Controller
 {
 
@@ -28,9 +25,14 @@ public class DashboardController : Controller
 
     public async Task<ActionResult> Index()
     {
-
-
         var currentUser = await _userManager.GetUserAsync(User);
+
+        // If the user is not IsAuthenticated, return the view with no data
+        if (currentUser == null)
+        {
+            return View();
+        }
+
         // Last 7 Days
         DateTime StartDate = DateTime.Today.AddDays (-6);
         DateTime EndDate = DateTime.Today;
@@ -155,7 +157,7 @@ public class DashboardController : Controller
 
 public class SplineChartData 
 {
-    public string day;
+    public string? day;
     public int income;
     public int expense;
 }

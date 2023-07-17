@@ -53,21 +53,52 @@ body {
   }
 
   #menu .e-menu-item .e-anchor-wrap span.e-menu-icon {
-      color: rgb(171, 163, 152);
+      color: rgb(171, 163, 152) !important;
   }
 
   #menu .e-menu-item.e-separator {
       border: none;
-      margin: 5px 5px;
+      margin: 8px 8px;
       text-transform: uppercase;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 14px;
       color: #65da41;
   }
 
       #menu .e-menu-item.e-separator:not(:first-child) {
           margin-top: 35px;
       }
+      
+
+#menu .e-menu-item.e-navigable,
+#menu .e-menu-item.e-menu-caret-icon {
+    height: 50px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#menu .e-menu-item.e-navigable a,
+#menu .e-menu-item.e-menu-caret-icon {
+    width: 100%;
+    color: rgb(171, 163, 152);
+    font-weight: 300;
+    padding: 7px 7px;
+}
+
+#menu .e-menu-item.e-navigable .e-anchor-wrap span.e-menu-icon,
+#menu .e-menu-item.e-menu-caret-icon .e-menu-icon {
+    color: rgb(171, 163, 152) !important;
+}
+#menuitem_5 {
+  /* add your specific styles for "Sign Out" here */
+  color: rgb(171, 163, 152);
+  font-weight: 300;
+  padding: 7px 7px;
+  box-sizing: border-box;
+}
+
+
+
 
 
 /* Profile pic */

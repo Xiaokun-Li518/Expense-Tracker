@@ -3,6 +3,7 @@
     ViewData["PageTitle"] = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="row">
     <div class="col-md-7">
         <div class="widget p-5" style="background-color: #212b36">
@@ -15,6 +16,12 @@
                     <ejs-textbox id="password" placeholder="Password" floatLabelType="Auto" ejs-for="@Model.Password" type="password"></ejs-textbox>
                     <span asp-validation-for="Password" class="text-danger fs-6"></span>
                 </div>
+
+                <!-- Display model-wide errors -->
+                <div class="text-danger fs-6">
+                    @Html.ValidationSummary(true)
+                </div>
+
                 <ejs-button id="submit" type="submit" content="Submit" cssClass="e-success"></ejs-button>
             </form>
         <span style="font-size: medium;">Don't have an account? 
@@ -24,5 +31,3 @@
         </div>
     </div>
 </div>
-
-<!-- Register Button -->

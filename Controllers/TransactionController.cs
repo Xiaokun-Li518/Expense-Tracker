@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Expense_Tracker.Controllers
 {
-    [Authorize]
     public class TransactionController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -29,6 +28,11 @@ namespace Expense_Tracker.Controllers
         {
             var currentUser = await _userManager.GetUserAsync(User);
 
+            if (currentUser == null)
+            {
+                return View(new List<Transaction>());
+            }
+
             var applicationDbContext = _context.Transactions
                 .Where(t => t.UserId == currentUser.Id)
                 .Include(t => t.Category);
@@ -41,8 +45,12 @@ namespace Expense_Tracker.Controllers
         // GET: Transaction/AddOrEdit
         public async Task<IActionResult> AddOrEdit(int id=0)
         {
-            await PopulateCategories();
             var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null)
+            {
+                return Challenge();
+            }
+            await PopulateCategories();
             if (id == 0)
             {
                 return View(new Transaction());
@@ -63,6 +71,7 @@ namespace Expense_Tracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
         {
             await PopulateCategories();

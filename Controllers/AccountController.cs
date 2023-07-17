@@ -39,7 +39,7 @@ namespace Expense_Tracker.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Password Incorrect");
                     return View(model);
                 }
             }
