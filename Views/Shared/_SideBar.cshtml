@@ -2,61 +2,6 @@
 @using Syncfusion.EJ2.Navigations;
 @using Microsoft.AspNetCore.Identity;
 @{
-    List<MenuItem> MainMenuItems = new List<MenuItem>{
-		new MenuItem {
-			Text="General",
-			Separator=true
-		},
-		new MenuItem {
-			Text="Dashborad",
-			Url = "/",
-			IconCss="fa-solid fa-box"
-		},
-		new MenuItem {
-			Text="Categories",
-			Url = "/Category",
-			IconCss="fa-solid fa-folder-closed"
-		},
-		new MenuItem {
-			Text="Transactions",
-			Url = "/Transaction",
-			IconCss="fa-solid fa-arrow-right-arrow-left"
-		},
-	};
-    if (User.Identity.IsAuthenticated) {
-        MainMenuItems.Add (
-            new MenuItem {
-                Text = "Notification",
-                IconCss = "fa-solid fa-bell",
-                Url="#"
-            }
-        );
-        MainMenuItems.Add(
-            new MenuItem {
-                Text = "Sign Out",
-                IconCss = "fa-solid fa-arrow-left"
-            }
-        );
-
-        MainMenuItems.Add(
-            new MenuItem {
-                Text = "Settings",
-                IconCss = "fa-solid fa-eye",
-                Items = new List<MenuItem> {
-                    new MenuItem{ Text = "Change Profile" },
-                    new MenuItem{ Text = "Add Details" }
-                }
-            }
-        );
-    } else {
-        MainMenuItems.Add(
-            new MenuItem {
-                Text = "Sign In",
-                IconCss = "fa-solid fa-arrow-right",
-                Url = "/Account/Login"
-            }
-        );
-    }
 }
 
 
