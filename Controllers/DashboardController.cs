@@ -2,6 +2,8 @@ using Expense_Tracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Expense_Tracker.Controllers;
@@ -11,19 +13,32 @@ public class DashboardController : Controller
 
     private readonly ApplicationDbContext _context;
     private readonly ILogger<DashboardController> _logger;
-    public DashboardController(ApplicationDbContext context, ILogger<DashboardController> logger)
+    private readonly UserManager<User> _userManager;
+    public DashboardController (ApplicationDbContext context, 
+                                ILogger<DashboardController> logger, 
+                                UserManager<User> userManager)
     {
         _context = context;
         _logger = logger;
+        _userManager = userManager;
     }
+
     public async Task<ActionResult> Index()
     {
+        var currentUser = await _userManager.GetUserAsync(User);
+
+        // If the user is not IsAuthenticated, return the view with no data
+        if (currentUser == null)
+        {
+            return View();
+        }
+
         // Last 7 Days
         DateTime StartDate = DateTime.Today.AddDays (-6);
         DateTime EndDate = DateTime.Today;
 
         // Get 7 days of transactions
-        List<Transaction> SelectedTranscations = await GetSelectedTransactions(StartDate, EndDate);
+        List<Transaction> SelectedTranscations = await GetSelectedTransactions(StartDate, EndDate, currentUser);
 
         // Total Income, Total Expense, Balance
         PrepareTotal (SelectedTranscations);
@@ -37,6 +52,7 @@ public class DashboardController : Controller
 
         // Recent Transations 
         ViewBag.RecentTransations = await _context.Transactions
+            .Where (t => t.User.Id == currentUser.Id && t.Date >= StartDate && t.Date <= EndDate)
             .Include(i => i.Category)
             .OrderByDescending (j => j.Date)
             .Take(5)
@@ -68,11 +84,11 @@ public class DashboardController : Controller
         ViewBag.Balance = String.Format(culture, "{0:C0}", Balance);
     }
 
-    private async Task<List<Transaction>> GetSelectedTransactions(DateTime StartDate, DateTime EndDate)
+    private async Task<List<Transaction>> GetSelectedTransactions(DateTime StartDate, DateTime EndDate, User currentUser)
     {
         return await _context.Transactions
-            .Include(x => x.Category)
-            .Where (y => y.Date >= StartDate && y.Date  <= EndDate)
+            .Where(t => t.User.Id == currentUser.Id && t.Date >= StartDate && t.Date <= EndDate)
+            .Include(i => i.Category)
             .ToListAsync();
     }
 
@@ -141,7 +157,7 @@ public class DashboardController : Controller
 
 public class SplineChartData 
 {
-    public string day;
+    public string? day;
     public int income;
     public int expense;
 }

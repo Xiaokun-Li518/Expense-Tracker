@@ -1,13 +1,20 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using Newtonsoft.Json;
 namespace Expense_Tracker.Models
 {
     public class Transaction
     {
         [Key]
         public int? TransactionId { get; set;}
+
+
+
+        // New user relation here
+        public string UserId { get; set; }
+        [JsonIgnore]
+        public User User { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Please select a category.")]
         public int CategoryId { get; set; }

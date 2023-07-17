@@ -5,36 +5,68 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Expense_Tracker.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Globalization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Expense_Tracker.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        // GET: Category
         public async Task<IActionResult> Index()
         {
-              return _context.Categories != null ? 
-                          View(await _context.Categories.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
+            var currentUser = await _userManager.GetUserAsync(User);
+            if(currentUser == null)
+            {
+                return View(new List<Category>());
+            }
+
+            var categories = await _context.Categories
+                .Where(c => c.UserId == currentUser.Id)
+                .Select(c => new Category 
+                {
+                    CategoryId = c.CategoryId,
+                    UserId = c.UserId,
+                    Title = c.Title,
+                    Icon = c.Icon,
+                    Type = c.Type
+                })
+                .ToListAsync();
+
+            return View(categories);
         }
 
         // GET: Category/AddOrEdit
-        public IActionResult AddOrEdit(int id=0)
+        public async Task<IActionResult> AddOrEdit(int id = 0)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
+            if(currentUser == null)
+            {
+                return Challenge(); // Redirects to the Login page
+            }
+
             if (id == 0)
             {
                 return View(new Category());
             }
             else
             {
-                return View (_context.Categories.Find(id));
+                var category = await _context.Categories.FindAsync(id);
+                if (category == null || category.UserId != currentUser.Id)
+                {
+                    return Unauthorized();
+                }
+
+                return View(category);
             }
         }
 
@@ -43,44 +75,58 @@ namespace Expense_Tracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]  // Moved here
         public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
+            
+            ModelState.Clear();
+
             if (ModelState.IsValid)
             {
                 if (category.CategoryId == 0)
                 {
-                    _context.Add (category);
+                    category.UserId = currentUser.Id;
+                    _context.Add(category);
                 }
                 else
                 {
-                    _context.Update (category);
+                    var originalCategory = await _context.Categories.FindAsync(category.CategoryId);
+                    if (originalCategory == null || originalCategory.UserId != currentUser.Id)
+                    {
+                        return Unauthorized();
+                    }
+
+                    // Update properties manually
+                    originalCategory.Title = category.Title;
+                    originalCategory.Icon = category.Icon;
+                    originalCategory.Type = category.Type;
                 }
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(category);
         }
-
-
 
         // POST: Category/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]  // Moved here
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            if (_context.Categories == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
-            }
+            var currentUser = await _userManager.GetUserAsync(User);
+
             var category = await _context.Categories.FindAsync(id);
-            if (category != null)
+            if (category == null || category.UserId != currentUser.Id)
             {
-                _context.Categories.Remove(category);
+                return Unauthorized();
             }
-            
+
+            _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
     }
 }
