@@ -32,16 +32,17 @@ namespace Expense_Tracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                var user = await _userManager.FindByNameAsync(model.UsernameOrEmail) ?? await _userManager.FindByEmailAsync(model.UsernameOrEmail);
+                if (user != null)
                 {
-                    return RedirectToLocal("Dashboard");
+                    var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, lockoutOnFailure: false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToLocal("Dashboard");
+                    }
                 }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Password Incorrect");
-                    return View(model);
-                }
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return View(model);
             }
             
             return View(model);
@@ -69,26 +70,30 @@ namespace Expense_Tracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            Console.WriteLine (ModelState.IsValid);
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                // Check if the username is already in use
+                var existingUserWithUsername = await _userManager.FindByNameAsync(model.Username);
+                if (existingUserWithUsername != null)
+                {
+                    // If the username is already in use, add a model error and return the view
+                    ModelState.AddModelError("Username", "This username is already in use.");
+                    return View(model);
+                }
+
+                var user = new User { UserName = model.Username, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    // For more information on how to enable account confirmation and password reset please 
-                    // visit https://go.microsoft.com/fwlink/?LinkID=532713
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToLocal("Dashboard");
-
                 }
                 AddErrors(result);
             }
-
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
+
 
         private IActionResult RedirectToLocal(string returnUrl)
         {

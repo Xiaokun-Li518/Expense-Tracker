@@ -9,8 +9,8 @@
         <div class="widget p-5" style="background-color: #212b36">
             <form asp-controller="Account" asp-action="Login" method="post">
                 <div class="mb-3">
-                    <ejs-textbox id="email" placeholder="Email" floatLabelType="Auto" ejs-for="@Model.Email"></ejs-textbox>
-                    <span asp-validation-for="Email" class="text-danger fs-6"></span>
+                    <ejs-textbox id="UsernameOrEmail" placeholder="Username or Email" floatLabelType="Auto" ejs-for="@Model.UsernameOrEmail"></ejs-textbox>
+                    <span asp-validation-for="UsernameOrEmail" class="text-danger fs-6"></span>
                 </div>
                 <div class="mb-3">
                     <ejs-textbox id="password" placeholder="Password" floatLabelType="Auto" ejs-for="@Model.Password" type="password"></ejs-textbox>
@@ -24,10 +24,9 @@
 
                 <ejs-button id="submit" type="submit" content="Submit" cssClass="e-success"></ejs-button>
             </form>
-        <span style="font-size: medium;">Don't have an account? 
-        <a asp-controller="Account" asp-action="Register" style="color: #428bca; text-decoration: none;">Register</a>
-        </span>
-
+            <span style="font-size: medium;">Don't have an account? 
+                <a asp-controller="Account" asp-action="Register" style="color: #428bca; text-decoration: none;">Register</a>
+            </span>
         </div>
     </div>
 </div>
