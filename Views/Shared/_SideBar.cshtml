@@ -2,8 +2,6 @@
 @using Syncfusion.EJ2.Navigations;
 @using Microsoft.AspNetCore.Identity;
 @{
-    Dictionary<string, object> HtmlAttribute = new Dictionary<string, object>()
-    {   {"class", "sidebar-menu" } };
     List<MenuItem> MainMenuItems = new List<MenuItem>{
 		new MenuItem {
 			Text="General",
@@ -25,7 +23,6 @@
 			IconCss="fa-solid fa-arrow-right-arrow-left"
 		},
 	};
-
     if (User.Identity.IsAuthenticated) {
         MainMenuItems.Add (
             new MenuItem {

@@ -9,8 +9,8 @@ namespace Expense_Tracker.Models
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Username or Email")]
+        public string UsernameOrEmail { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

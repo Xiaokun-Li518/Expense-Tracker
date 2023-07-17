@@ -118,18 +118,38 @@ img.profile-pic {
 nav.navbar {
   background-color: rgba(18, 22, 29);
 }
-    nav.navbar i {
-      padding:10px;
-      border-radius: 50%;
-      font-size:1.2rem;
-      cursor:pointer;
-    }
 
-        nav.navbar i:hover, nav.navbar img:hover {
-          cursor: pointer;
-          background-color: #48545f14;
-          transform: scale(1.05) translateX(1px);
-        }
+nav.navbar i,
+nav.navbar .dropdown-toggle {
+  padding:10px;
+  border-radius: 50%;
+  font-size:1.2rem;
+  cursor:pointer;
+}
+
+nav.navbar i:hover, 
+nav.navbar .dropdown-toggle:hover,
+nav.navbar img:hover {
+  cursor: pointer;
+  background-color: #48545f14;
+  transform: scale(1.05) translateX(1px);
+}
+
+.dropdown-menu {
+  background-color:#212b36;
+  border: none;
+  color: #fff;
+}
+
+.dropdown-item {
+  color: #fff;
+}
+
+.dropdown-item:hover {
+  background-color: #adbac614;
+  color: #fff;
+}
+
 
 
 /* main-container */
