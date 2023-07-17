@@ -1,11 +1,92 @@
-
+@using Syncfusion.EJ2;
+@using Syncfusion.EJ2.Navigations;
+@using Microsoft.AspNetCore.Identity;
 @{
+    Dictionary<string, object> HtmlAttribute = new Dictionary<string, object>()
+    {   {"class", "sidebar-menu" } };
+    List<MenuItem> MainMenuItems = new List<MenuItem>{
+		new MenuItem {
+			Text="General",
+			Separator=true
+		},
+		new MenuItem {
+			Text="Dashborad",
+			Url = "/",
+			IconCss="fa-solid fa-box"
+		},
+		new MenuItem {
+			Text="Categories",
+			Url = "/Category",
+			IconCss="fa-solid fa-folder-closed"
+		},
+		new MenuItem {
+			Text="Transactions",
+			Url = "/Transaction",
+			IconCss="fa-solid fa-arrow-right-arrow-left"
+		},
+	};
+
+    if (User.Identity.IsAuthenticated) {
+        MainMenuItems.Add (
+            new MenuItem {
+                Text = "Notification",
+                IconCss = "fa-solid fa-bell",
+                Url="#"
+            }
+        );
+        MainMenuItems.Add(
+            new MenuItem {
+                Text = "Sign Out",
+                IconCss = "fa-solid fa-arrow-left"
+            }
+        );
+
+        MainMenuItems.Add(
+            new MenuItem {
+                Text = "Settings",
+                IconCss = "fa-solid fa-eye",
+                Items = new List<MenuItem> {
+                    new MenuItem{ Text = "Change Profile" },
+                    new MenuItem{ Text = "Add Details" }
+                }
+            }
+        );
+    } else {
+        MainMenuItems.Add(
+            new MenuItem {
+                Text = "Sign In",
+                IconCss = "fa-solid fa-arrow-right",
+                Url = "/Account/Login"
+            }
+        );
+    }
 }
 
-<ejs-sidebar id="sidebar" width="290px">
-	@* <e-content-template>
-		<div class="title-header">
-			<div style="display:inline-block"> Sidebar </div>
-		</div>
-	</e-content-template> *@
+
+
+<ejs-sidebar id="sidebar" width="290px" enableDock="true" dockSize="50px">
+	<e-content-template>
+		<ejs-menu id="menu" 
+				items="MainMenuItems"
+				orientation="Vertical"
+				select="onMenuSelect"
+				></ejs-menu>
+	</e-content-template>
 </ejs-sidebar>
+
+@Html.AntiForgeryToken()
+<script>
+    window.onMenuSelect = function(args) {
+        if (args.item.text === "Sign Out") {
+            $.ajax({
+                url: '/Account/SignOut',
+                type: 'POST',
+				headers: { 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() },
+                success: function(result) {
+                    // Handle successful logout, maybe redirect to a different page
+					location.reload();
+                }
+            });
+        }
+    }
+</script>

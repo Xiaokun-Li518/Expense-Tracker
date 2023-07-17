@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Zj6R84M3SD84a18vo5y3fbVKi13B1KohMoUu3KdaZ/k=",
+  "Hash": "iX5N31geRvj2OxN0OMzlKWTiK6JHbwcbmZFDLc1HgOg=",
   "Source": "Expense Tracker",
   "BasePath": "_content/Expense Tracker",
   "Mode": "Default",
@@ -1069,6 +1069,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/wwwroot/profile.jpeg",
+      "SourceId": "Expense Tracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/wwwroot/",
+      "BasePath": "_content/Expense Tracker",
+      "RelativePath": "profile.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/profile.jpeg"
+    },
+    {
+      "Identity": "/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/wwwroot/Profile.png",
+      "SourceId": "Expense Tracker",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/wwwroot/",
+      "BasePath": "_content/Expense Tracker",
+      "RelativePath": "Profile.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Profile.png"
     }
   ]
 }

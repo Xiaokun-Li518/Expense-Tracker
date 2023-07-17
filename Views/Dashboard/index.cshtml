@@ -89,7 +89,7 @@
             <ejs-chart id="spline-chart" 
                        background="#1a222b"
                        palettes=@(new string[]{"#65da41", "#ff4e48"})>
-                <e-chart-primaryxaxis valueType="@Syncfusion.EJ2.Charts.ValueType.Category" > 
+                <e-chart-primaryxaxis valueType="@Syncfusion.EJ2.Charts.ValueType.Category"> 
                     <e-majorgridlines width="0"></e-majorgridlines>
                     <e-majorticklines width="0"></e-majorticklines>
                 </e-chart-primaryxaxis>
@@ -141,7 +141,7 @@
                 <h5 class="fw-bold">Recent Transations</h5>
             </div>
             <div class="px-4 pb-4">
-                <ejs-grid id="recent-transations" dataSource="@ViewBag.RecentTransations">
+                <ejs-grid id="recent-transations" dataSource="@ViewBag.RecentTransations" gridLines="None">
                     <e-grid-columns>
                         <e-grid-column headerText="Category" field="CategoryTitleWithIcon"></e-grid-column>
                         <e-grid-column headerText="Date" field="Date" width="110px" type="date" format="MMM-dd-yy" textAlign="Left"></e-grid-column>
@@ -151,5 +151,12 @@
             </div>
         </div>
     </div>
-
+    <div class="col-md-6">
+        <div class="widget h-100">
+            <div class="d-flex flex-column justify-content-center align-items-center h-100 py-2">
+                <a href="/Category/AddOrEdit" class="no-a-decoration"><i class="fa-solid fa-plus fa-l"></i> Category</a>
+                <a href="/Transaction/AddOrEdit" class="no-a-decoration"><i class="fa-solid fa-plus fa-l"></i> Transaction</a>
+            </div>
+        </div>
+    </div>
 </div>
