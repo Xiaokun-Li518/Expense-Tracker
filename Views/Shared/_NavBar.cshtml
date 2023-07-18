@@ -1,0 +1,43 @@
+@using Syncfusion.EJ2;
+@using Syncfusion.EJ2.Navigations;
+
+<nav class="navbar sticky-top">
+    <div class="container-fluid py-2 px-4">
+        <div>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-bell"></i>
+            <i class="fa-solid fa-message"></i>
+        </div>
+        <div>
+            <i class="dropdown">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span>Welcome, @User.Identity.Name</span>
+                }
+                <i class="fa-solid fa-user dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <form id="signOutForm" asp-controller="Account" asp-action="SignOut" method="post">
+                                <button type="submit" class="dropdown-item">Sign Out</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a class="dropdown-item" href="Login">Sign In</a></li>
+                    }
+                </ul>
+            </i>
+        </div>
+    </div>
+</nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $('.dropdown').hover(function(){ 
+        $('.dropdown-toggle', this).trigger('click'); 
+    });
+</script>
