@@ -53,17 +53,7 @@
     <div class="col-md-4">
         <div class="widget chart">
             <div class="p-4">
-                @{
-                    var doughnutChartData = ViewBag.DoughnutChartData as List<Transaction>;
-                }
-                @if (doughnutChartData == null || !doughnutChartData.Any())
-                {
-                    <h5 class="fw-bold">No expense for the past 7 days</h5>
-                }
-                else
-                {
-                    <h5 class="fw-bold">Expense By Category</h5>
-                }
+                <h5 class="fw-bold">Expense By Category</h5>
                 <div class="control-section" align='center'>
                     <ejs-accumulationchart id="doughnutchart" enableSmartLabels enableBorderOnMouseMove background="#1a222b">
                         <e-accumulationchart-center x="50%" y="50%"></e-accumulationchart-center>
