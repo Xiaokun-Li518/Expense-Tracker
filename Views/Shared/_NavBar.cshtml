@@ -28,7 +28,7 @@
                     }
                     else
                     {
-                        <li><a class="dropdown-item" href="Login">Sign In</a></li>
+                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Login">Sign In</a></li>
                     }
                 </ul>
             </i>
@@ -38,6 +38,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $('.dropdown').hover(function(){ 
-        $('.dropdown-toggle', this).trigger('click'); 
+        $('.dropdown-toggle', this).trigger('click');
     });
 </script>
