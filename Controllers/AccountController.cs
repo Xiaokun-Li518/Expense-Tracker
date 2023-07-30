@@ -23,7 +23,8 @@ namespace Expense_Tracker.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            var model = new LoginViewModel { RememberMe = false };
+            return View(model);
         }
 
         [HttpPost]
@@ -36,6 +37,7 @@ namespace Expense_Tracker.Controllers
                 if (user != null)
                 {
                     var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, lockoutOnFailure: false);
+
                     if (result.Succeeded)
                     {
                         return RedirectToLocal("Dashboard");
