@@ -16,6 +16,12 @@
                     <ejs-textbox id="password" placeholder="Password" floatLabelType="Auto" ejs-for="@Model.Password" type="password"></ejs-textbox>
                     <span asp-validation-for="Password" class="text-danger fs-6"></span>
                 </div>
+                <div class="mb-3">
+                    @if (Model != null)
+                    {
+                        <ejs-checkbox id="rememberMe" label="Remember me?" ejs-for="@Model.RememberMe" value="@Model.RememberMe"></ejs-checkbox>
+                    }
+                </div>
 
                 <!-- Display model-wide errors -->
                 <div class="text-danger fs-6">
