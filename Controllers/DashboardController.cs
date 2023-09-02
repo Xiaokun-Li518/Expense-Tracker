@@ -63,24 +63,24 @@ public class DashboardController : Controller
 
     private void PrepareTotal (List<Transaction> transactions)
     {
+        CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+        culture.NumberFormat.CurrencyNegativePattern = 1;
         // Total Income 
         int TotalIncome = (int)transactions
             .Where (i => i.Category.Type == "Income")
             .Sum (j => j.Amount);
 
-        ViewBag.TotalIncome = TotalIncome.ToString("c0");
+        ViewBag.TotalIncome = String.Format(culture, "{0:C0}", TotalIncome);
 
         // Total Expense    
         int TotalExpense = (int)transactions
             .Where (i => i.Category.Type == "Expense")
             .Sum (j => j.Amount);
 
-        ViewBag.TotalExpense = TotalExpense.ToString("c0");
+        ViewBag.TotalExpense = String.Format(culture, "{0:C0}", TotalExpense);
 
         // Balance 
         int Balance = TotalIncome - TotalExpense;
-        CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
-        culture.NumberFormat.CurrencyNegativePattern = 1;
         ViewBag.Balance = String.Format(culture, "{0:C0}", Balance);
     }
 
