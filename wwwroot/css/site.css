@@ -335,3 +335,42 @@ btn:focus, .btn:active {
       color:white;
       font-family: 'Inter';
   }
+
+
+  @media (max-width: 767px) {
+    html {
+      font-size: 12px; /* Change to whatever size you want */
+    }
+  }
+  
+
+  @media (max-width: 767px) {
+    .main-container {
+      margin-left: 0; /* Resetting the margin to make it full-width */
+    }
+  }
+  
+
+  @media (max-width: 767px) {
+    #menu {
+      display: none; /* Hide it initially */
+    }
+    .hamburger-menu {
+      display: block; /* Show hamburger menu */
+    }
+  }
+  
+
+  @media (max-width: 767px) {
+    img.profile-pic {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .widget, .e-grid {
+      width: 100%;
+    }
+  }
+  
