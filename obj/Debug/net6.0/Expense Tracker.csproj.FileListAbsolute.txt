@@ -303,3 +303,8 @@
 /Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/bin/Debug/net6.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/bin/Debug/net6.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/bin/Debug/net6.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll
+/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/bin/Debug/net6.0/Pipelines.Sockets.Unofficial.dll
+/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/bin/Debug/net6.0/StackExchange.Redis.dll
+/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/bin/Debug/net6.0/System.Diagnostics.PerformanceCounter.dll
+/Users/lixiaokun/Desktop/C#Learning/Expense Tracker/Expense Tracker/bin/Debug/net6.0/runtimes/win/lib/netcoreapp2.0/System.Diagnostics.PerformanceCounter.dll
