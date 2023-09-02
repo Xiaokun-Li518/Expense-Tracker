@@ -10,11 +10,11 @@ namespace Expense_Tracker.Models
     {
         [Required]
         [Display(Name = "Username or Email")]
-        public string UsernameOrEmail { get; set; }
+        public string? UsernameOrEmail { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
